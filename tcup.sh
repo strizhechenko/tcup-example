@@ -13,7 +13,7 @@ _echo() {
 
 echo_result() {
         case $1 in
-                0 )
+                0 ) 
                         echo_success
                         ;;
                 255 )
@@ -27,13 +27,11 @@ echo_result() {
 }
 
 run() {
-        output="$($@)"
+        local output="$($@)"
         local result=$?
-        results=( ${results[@]} $result )
-        if [ -z "$output" ]; then
-                output="-"
-        fi
+        [ -z "$output" ] && output="-"
         outputs=( ${outputs[@]} "$output" )
+        results=( ${results[@]} $result )
         ((call_count++))
         echo $@
 }
